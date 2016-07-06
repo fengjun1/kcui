@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="jquery-1.11.2.min.js"></script>
+		<script src="underscore.js" type="text/javascript" charset="utf-8"></script>
+		<script src="backbone.js" type="text/javascript" charset="utf-8"></script>
+		<script src="framework.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/javascript" src="main.js"></script>
+
+		<script id="t_Page_p1" type="text/template">
+			<h1 style="background: rebeccapurple">head 信息</h1>
+			<div id="t_List1_fkList" style="background: teal"></div>
+			<h1 style="background: burlywood"> 底部信息</h1>
+			
+		</script>	
+		
+		
+		<script id="t_Page_p2" type="text/template">
+			<h1 style="background: rebeccapurple">head 信息</h1>
+			<div id="t_Img_fkImg"></div>
+			<h1 style="background: burlywood"> 底部信息</h1>
+			
+		</script>	
+
+		<script id="t_Page_p3" type="text/template">
+			<h1 style="background: rebeccapurple">head 信息</h1>
+			<div id="t_List2_upload"></div>
+			<h1 style="background: burlywood"> 底部信息</h1>			
+		</script>	
+
+		<script id="t_Page_p4" type="text/template">
+	    	<%_.each(data4, function(item) {%>
+                <div class="item" id='appName'>
+					<div class="input-label"><%=item.label%></div>
+					<div class="input-wrap">
+						<input class="input-regular input-text" id="input-<%=item.name%>" name="<%=item.name%>" />
+						<span class="Validform_checktip"></span>
+					</div>
+				</div>
+            <%});%>
+			<button type="submit" id="submit">Next</button>
+	    </script>
+
+		<script id="t_marketList" type="text/template">
+            <%_.each(data3, function(item) {%>
+                <div class="markList">
+                    <ul class='mTitle'>
+							<li class='market'>市场</li>
+							<li class='ID'>账号</li>
+							<li class='handle'>操作</li>
+							<li class='smallPackage'>渠道包</li>
+					</ul>
+                    <ul class='mList'>
+                        <%_.each(data3, function(item) {%>
+                            <ul><li class="market" id="25"><span><%=item.market%></span></li>				
+                            <li class="ID"><select class="has" style="background: rgb(238, 238, 238);"><option>请选择账号</option></select></li>		
+                            <li class="handle"><span style="color:#656565">已开通</span></li>			
+                            <li class="up-pack"><p>上传多渠道包</b><u style="display: none;">上传多渠道包</u></p><input id="html5_1alub0ueq1nnjqgv7hr19i5hpj8" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" accept=".apk"></li>
+                        <%});%>
+                    </ul>                        
+                </div>
+            <%});%>
+    		</script>
+		
+		
+		<script id="fkList" type="text/template">
+            <%_.each(datas, function(item) {%>
+                <div class="outer">
+                    <div class="title">
+                        <span ><%=item.film%></span>
+                    </div>
+                    <ul class="ul">
+                        <%_.each(datas, function(item) {%>
+                            <li>
+                                <a href="<%=item.url%>"><%=item.title%></a>
+                            </li>
+                        <%});%>
+                    </ul>                        
+                </div>
+            <%});%>
+    		</script>
+    		
+	    <script id="fkImg" type="text/template">
+	        <img src="bb.JPG" />
+	    </script>
+		
+		<style>
+				*{
+					margin: 0;
+					padding: 0;
+				}
+		</style>
+	</head>
+	
+	<body>	
+		<div class="app">
+			<div id="app_p1">
+				
+			</div>
+			
+			<div id="app_p2">
+
+			</div>
+
+			<div id="app_p3">
+
+			</div>
+			
+			<div id="app_p4">
+				
+			</div>
+
+			<button id="first_step"><a href="./tj.html#p1">第一页</a></button>
+			<button id="second_step"><a href="./tj.html#p2">第二页</a></button>
+			<button id="third_step"><a href="./tj.html#p3">第三页</a></button>
+			<button id="forth_step"><a href="./tj.html#p4">第四页</a></button>
+ 
+		</div>
+
+	</body>
+	<script>
+		//router.navigate('view1');
+		window.onload=function(){
+			Router1 = Backbone.Router.extend({
+				routes: {
+					'p1':'p1', 
+					'p2?:pars': 'p2',  
+					'p2':'p2',
+					'p3':'p3',
+					'p4':'p4'
+				},
+
+				p1: function(){
+					options.pcn="Page"
+					options.mcn="baseModel"
+					window.kcui.actions.toPage('p1',options);
+
+				},
+				//带参数的路由，对比下面不带参数的路由
+				p2: function(pars){
+					options.pcn="Page"
+					options.mcn="baseModel"
+					window.kcui.actions.toPage('p2',options);
+					//window.kcui.Fn.transURL(pars);
+					console.log(pars);
+					//window.kcui.tools.transURL("http://wwww?sdfs=sdf");
+				},
+				p2: function(){
+					window.kcui.actions.toPage('p2',options);
+					//window.kcui.tools.transURL("http://wwww?sdfs=sdf");
+				},
+				p3:function(){
+//					window.kcui.actions.toPage('p3');
+					options.pcn="Page"
+					options.mcn="Input"
+					window.kcui.actions.toPage('p3',options);
+				},
+				p4:function(){
+					options.pcn="Page"
+					options.mcn="Page4"
+					window.kcui.actions.toPage('p4',options);
+				}
+			});
+			
+			window.kcui.router = new Router1();
+			
+			Backbone.history.start();
+			//window.kcui.router.navigate("p1");
+
+		}
+	</script>
+</html>
+ 
